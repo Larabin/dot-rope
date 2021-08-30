@@ -1,11 +1,18 @@
-import * as _ from 'lodash';
+import { Application, Sprite } from 'pixi.js'
 
-function component() {
-  const element = document.createElement('div');
+const app = new Application({
+	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
+	resolution: window.devicePixelRatio || 1,
+	backgroundColor: 0x6495ed,
+	width: 640,
+	height: 480
+});
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+const clampy: Sprite = Sprite.from("./assets/clampy.png");
 
-  return element;
-}
+clampy.anchor.set(0.5);
 
-document.body.appendChild(component());
+clampy.x = app.screen.width / 2;
+clampy.y = app.screen.height / 2;
+
+app.stage.addChild(clampy);
